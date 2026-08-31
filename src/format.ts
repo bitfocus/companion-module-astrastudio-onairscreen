@@ -51,3 +51,13 @@ export function parseAirTimeToSeconds(input: string): number {
 export function boolToVariable(value: boolean): string {
 	return value ? 'true' : 'false'
 }
+
+/**
+ * Format I or LRA for Companion variables: one decimal, empty when unknown.
+ */
+export function formatLoudness(value: number | null): string {
+	if (value === null || !Number.isFinite(value)) {
+		return ''
+	}
+	return value.toFixed(1)
+}

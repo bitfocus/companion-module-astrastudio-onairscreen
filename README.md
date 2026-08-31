@@ -33,7 +33,7 @@ Under **Buttons → Presets**, pick this connection. There are:
 
 - **LEDs** — LED 1–4 toggle; caption and colour follow OnAirScreen
 - **AIR timers** — AIR 1–4 with live caption and time (`m:SS`) on the button (AIR1 = microphone), plus Top-of-Hour and Reset AIR3 / AIR4
-- **Texts / Alarms** — NOW / NEXT / WARN display, Clear WARN, Silence alarm, Loudness I+LRA, Reset I+LRA
+- **Texts / Alarms** — NOW / NEXT / WARN display, Clear WARN, Silence alarm, Loudness I+LRA (live I and LRA), Reset I+LRA
 
 Drag a preset onto a Stream Deck (or other) button. Press to toggle; AIR buttons show the current timer as `m:SS`.
 
@@ -68,6 +68,8 @@ Use the variable picker (dollar sign) next to the button text field so the prefi
 | `now` / `next` / `warn` | Text lines                            |
 | `silence`               | Silence alarm latched                 |
 | `lufs_integrated`       | Programme I+LRA session running       |
+| `lufs_i`                | Integrated loudness I (LUFS)          |
+| `lra`                   | Loudness range LRA (LU)               |
 | `instance` / `version`  | OnAirScreen identity                  |
 
 ### Actions and feedbacks

@@ -327,7 +327,7 @@ export function UpdatePresets(self: ModuleInstance): void {
 		type: 'simple',
 		name: 'Loudness I+LRA',
 		style: {
-			text: 'I+LRA\\n$(oas:lufs_integrated)',
+			text: 'I $(oas:lufs_i)\\nLRA $(oas:lra)',
 			size: 'auto',
 			color: INACTIVE_COLOR,
 			bgcolor: INACTIVE_BG,

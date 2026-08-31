@@ -31,6 +31,8 @@ const SAMPLE = {
 	warnings: [{ text: 'SILENCE', priority: 0 }],
 	silence: true,
 	lufsIntegrated: true,
+	lufsI: -23.1,
+	lra: 5.2,
 	version: '1.0.0beta1',
 	instance: 'Studio-1',
 }
@@ -48,6 +50,8 @@ describe('parseStatus', () => {
 		assert.equal(status.now, 'Song')
 		assert.equal(status.instance, 'Studio-1')
 		assert.equal(status.version, '1.0.0beta1')
+		assert.equal(status.lufsI, -23.1)
+		assert.equal(status.lra, 5.2)
 	})
 
 	it('also accepts numeric keys', () => {
@@ -68,6 +72,8 @@ describe('parseStatus', () => {
 		assert.equal(status.air[2].seconds, 0)
 		assert.equal(status.silence, false)
 		assert.equal(status.lufsIntegrated, false)
+		assert.equal(status.lufsI, null)
+		assert.equal(status.lra, null)
 		assert.equal(status.warn, '')
 	})
 })
@@ -111,6 +117,8 @@ describe('statusToVariableValues', () => {
 		assert.equal(values.warn, 'SILENCE')
 		assert.equal(values.silence, 'true')
 		assert.equal(values.lufs_integrated, 'true')
+		assert.equal(values.lufs_i, '-23.1')
+		assert.equal(values.lra, '5.2')
 		assert.equal(values.instance, 'Studio-1')
 		assert.equal(values.version, '1.0.0beta1')
 	})

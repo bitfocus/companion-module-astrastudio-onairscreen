@@ -39,6 +39,8 @@ export type VariablesSchema = {
 	warn: string
 	silence: string
 	lufs_integrated: string
+	lufs_i: string
+	lra: string
 	instance: string
 	version: string
 }
@@ -83,6 +85,8 @@ export function UpdateVariableDefinitions(self: ModuleInstance): void {
 		warn: { name: 'WARN text' },
 		silence: { name: 'Silence alarm (true/false)' },
 		lufs_integrated: { name: 'Loudness I+LRA session running (true/false)' },
+		lufs_i: { name: 'Integrated loudness I (LUFS, one decimal)' },
+		lra: { name: 'Loudness range LRA (LU, one decimal)' },
 		instance: { name: 'OnAirScreen instance name' },
 		version: { name: 'OnAirScreen version' },
 	})

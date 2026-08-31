@@ -1,4 +1,4 @@
-import { boolToVariable, formatAirTime } from './format.js'
+import { boolToVariable, formatAirTime, formatLoudness } from './format.js'
 
 export const SLOT_NUMBERS = [1, 2, 3, 4] as const
 export type SlotNumber = (typeof SLOT_NUMBERS)[number]
@@ -26,6 +26,8 @@ export type OasStatus = {
 	warnings: unknown[]
 	silence: boolean
 	lufsIntegrated: boolean
+	lufsI: number | null
+	lra: number | null
 	instance: string
 	version: string
 }
@@ -43,6 +45,8 @@ export function emptyStatus(): OasStatus {
 		warnings: [],
 		silence: false,
 		lufsIntegrated: false,
+		lufsI: null,
+		lra: null,
 		instance: '',
 		version: '',
 	}
@@ -101,6 +105,17 @@ function asSeconds(value: unknown): number {
 	return Math.max(0, Math.floor(n))
 }
 
+function asOptionalLoudness(value: unknown): number | null {
+	if (value === null || value === undefined || value === '') {
+		return null
+	}
+	const n = typeof value === 'number' ? value : Number(value)
+	if (!Number.isFinite(n)) {
+		return null
+	}
+	return n
+}
+
 function parseLed(value: unknown): LedStatus {
 	const rec = asRecord(value)
 	if (!rec) {
@@ -146,6 +161,8 @@ export function parseStatus(raw: unknown): OasStatus {
 	status.warnings = Array.isArray(root.warnings) ? root.warnings : []
 	status.silence = asBool(root.silence)
 	status.lufsIntegrated = asBool(root.lufsIntegrated)
+	status.lufsI = asOptionalLoudness(root.lufsI)
+	status.lra = asOptionalLoudness(root.lra)
 	status.instance = asString(root.instance)
 	status.version = asString(root.version)
 	return status
@@ -208,6 +225,8 @@ export function statusToVariableValues(status: OasStatus): Record<string, string
 		warn: status.warn,
 		silence: boolToVariable(status.silence),
 		lufs_integrated: boolToVariable(status.lufsIntegrated),
+		lufs_i: formatLoudness(status.lufsI),
+		lra: formatLoudness(status.lra),
 		instance: status.instance,
 		version: status.version,
 	}

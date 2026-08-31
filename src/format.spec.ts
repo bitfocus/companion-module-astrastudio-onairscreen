@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
-import { boolToVariable, formatAirTime, parseAirTimeToSeconds } from './format.ts'
+import { boolToVariable, formatAirTime, formatLoudness, parseAirTimeToSeconds } from './format.ts'
 
 describe('formatAirTime', () => {
 	it('formats like OnAirScreen int(seconds/60):seconds%60:02d', () => {
@@ -24,6 +24,15 @@ describe('boolToVariable', () => {
 	it('uses true/false strings', () => {
 		assert.equal(boolToVariable(true), 'true')
 		assert.equal(boolToVariable(false), 'false')
+	})
+})
+
+describe('formatLoudness', () => {
+	it('formats one decimal and empty when unknown', () => {
+		assert.equal(formatLoudness(-23.14), '-23.1')
+		assert.equal(formatLoudness(5.2), '5.2')
+		assert.equal(formatLoudness(null), '')
+		assert.equal(formatLoudness(Number.NaN), '')
 	})
 })
 

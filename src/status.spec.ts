@@ -3,6 +3,7 @@ import { describe, it } from 'node:test'
 import {
 	connectionStatusMessage,
 	isAir3Toth,
+	isFullscreen,
 	isAirOn,
 	isLedAutoflash,
 	isLedOn,
@@ -75,6 +76,13 @@ describe('parseStatus', () => {
 		assert.equal(status.lufsI, null)
 		assert.equal(status.lra, null)
 		assert.equal(status.warn, '')
+		assert.equal(status.fullscreen, false)
+	})
+
+	it('reads fullscreen when the status includes it', () => {
+		const status = parseStatus({ fullscreen: true })
+		assert.equal(status.fullscreen, true)
+		assert.equal(isFullscreen(status), true)
 	})
 })
 
@@ -121,6 +129,8 @@ describe('statusToVariableValues', () => {
 		assert.equal(values.lra, '5.2')
 		assert.equal(values.instance, 'Studio-1')
 		assert.equal(values.version, '1.0.0beta1')
+		assert.equal(values.fullscreen, 'false')
+		assert.equal(statusToVariableValues(parseStatus({ fullscreen: true })).fullscreen, 'true')
 	})
 })
 

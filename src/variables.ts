@@ -43,6 +43,7 @@ export type VariablesSchema = {
 	lra: string
 	instance: string
 	version: string
+	fullscreen: string
 }
 
 export function UpdateVariableDefinitions(self: ModuleInstance): void {
@@ -89,5 +90,6 @@ export function UpdateVariableDefinitions(self: ModuleInstance): void {
 		lra: { name: 'Loudness range LRA (LU, one decimal)' },
 		instance: { name: 'OnAirScreen instance name' },
 		version: { name: 'OnAirScreen version' },
+		fullscreen: { name: 'Fullscreen (true/false)' },
 	})
 }

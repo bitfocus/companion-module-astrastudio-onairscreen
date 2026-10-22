@@ -23,6 +23,10 @@ export function air3TohCommand(state: ToggleState): string {
 	return `AIR3TOH:${state}`
 }
 
+export function fullscreenCommand(state: ToggleState): string {
+	return `FULLSCREEN:${state}`
+}
+
 export function lufsIntegratedCommand(state: LufsState): string {
 	return `LUFSI:${state}`
 }

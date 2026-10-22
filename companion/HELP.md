@@ -39,6 +39,7 @@ The connection status shows instance name and version when connected, for exampl
 | AIR timer        | `AIR{n}:ON` / `OFF` / `TOGGLE` (AIR1 = microphone)                                                       |
 | Reset AIR timer  | `AIR3:RESET` or `AIR4:RESET`                                                                             |
 | AIR3 top-of-hour | `AIR3TOH:ON` / `OFF` / `TOGGLE`                                                                          |
+| Fullscreen       | `FULLSCREEN:ON` / `OFF` / `TOGGLE` (OnAirScreen 1.1.0)                                                   |
 | Loudness I+LRA   | `LUFSI:START` / `STOP` / `TOGGLE` / `RESET` (start and running reset restart; stopped reset hides I+LRA) |
 | Set AIR3 time    | `AIR3TIME:seconds` from `m:ss` (e.g. `2:05`) or a raw second count                                       |
 | Set text field   | `NOW:` / `NEXT:` / `WARN:` plus text                                                                     |
@@ -49,31 +50,32 @@ A failed command is marked as a failed Companion action. After a successful comm
 
 ### Feedbacks
 
-LED on, LED autoflash, LED timedflash, AIR running, AIR3 TOTH, Silence, Loudness I+LRA, WARN not empty.
+LED on, LED autoflash, LED timedflash, AIR running, AIR3 TOTH, Silence, Loudness I+LRA, WARN not empty, Fullscreen.
 
 ### Variables
 
 Use the connection label (example assumes `oas`): `$(oas:air1_time)`, `$(oas:led1_status)`, …
 
-| Variable                | Meaning                                   |
-| ----------------------- | ----------------------------------------- |
-| `led{1-4}_status`       | `true` / `false`                          |
-| `led{1-4}_text`         | LED label                                 |
-| `led{1-4}_autoflash`    | Autoflash enabled                         |
-| `led{1-4}_timedflash`   | Timedflash enabled                        |
-| `air{1-4}_status`       | Timer running                             |
-| `air{1-4}_seconds`      | Integer seconds                           |
-| `air{1-4}_time`         | `m:SS` like OnAirScreen (`125` → `2:05`)  |
-| `air{1-4}_text`         | Timer label                               |
-| `air3_toth`             | Top-of-hour active                        |
-| `now` / `next` / `warn` | Text lines                                |
-| `silence`               | Silence alarm latched                     |
-| `lufs_integrated`       | Programme I+LRA session running           |
-| `lufs_i`                | Integrated loudness I (LUFS, one decimal) |
-| `lra`                   | Loudness range LRA (LU, one decimal)      |
-| `instance`              | Instance name                             |
-| `version`               | OnAirScreen version                       |
+| Variable                | Meaning                                      |
+| ----------------------- | -------------------------------------------- |
+| `led{1-4}_status`       | `true` / `false`                             |
+| `led{1-4}_text`         | LED label                                    |
+| `led{1-4}_autoflash`    | Autoflash enabled                            |
+| `led{1-4}_timedflash`   | Timedflash enabled                           |
+| `air{1-4}_status`       | Timer running                                |
+| `air{1-4}_seconds`      | Integer seconds                              |
+| `air{1-4}_time`         | `m:SS` like OnAirScreen (`125` → `2:05`)     |
+| `air{1-4}_text`         | Timer label                                  |
+| `air3_toth`             | Top-of-hour active                           |
+| `now` / `next` / `warn` | Text lines                                   |
+| `silence`               | Silence alarm latched                        |
+| `lufs_integrated`       | Programme I+LRA session running              |
+| `lufs_i`                | Integrated loudness I (LUFS, one decimal)    |
+| `lra`                   | Loudness range LRA (LU, one decimal)         |
+| `instance`              | Instance name                                |
+| `version`               | OnAirScreen version                          |
+| `fullscreen`            | Main window is fullscreen (`true` / `false`) |
 
 ### Presets
 
-LED1–4 toggle with live caption and colour, AIR1–4 with live caption and time (AIR1 = microphone), TOTH, Reset AIR3 / AIR4, NOW / NEXT / WARN display, Clear WARN, Silence alarm, Loudness I+LRA (live I and LRA), Reset I+LRA.
+LED1–4 toggle with live caption and colour, AIR1–4 with live caption and time (AIR1 = microphone), TOTH, Reset AIR3 / AIR4, NOW / NEXT / WARN display, Clear WARN, Silence alarm, Loudness I+LRA (live I and LRA), Reset I+LRA, Fullscreen toggle.

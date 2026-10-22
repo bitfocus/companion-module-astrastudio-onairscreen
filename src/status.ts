@@ -30,6 +30,7 @@ export type OasStatus = {
 	lra: number | null
 	instance: string
 	version: string
+	fullscreen: boolean
 }
 
 const EMPTY_LED: LedStatus = { status: false, text: '', autoflash: false, timedflash: false }
@@ -49,6 +50,7 @@ export function emptyStatus(): OasStatus {
 		lra: null,
 		instance: '',
 		version: '',
+		fullscreen: false,
 	}
 }
 
@@ -165,6 +167,7 @@ export function parseStatus(raw: unknown): OasStatus {
 	status.lra = asOptionalLoudness(root.lra)
 	status.instance = asString(root.instance)
 	status.version = asString(root.version)
+	status.fullscreen = asBool(root.fullscreen)
 	return status
 }
 
@@ -208,6 +211,10 @@ export function isWarnActive(status: OasStatus): boolean {
 	return status.warn.trim() !== '' || status.warnings.length > 0
 }
 
+export function isFullscreen(status: OasStatus): boolean {
+	return status.fullscreen
+}
+
 export function connectionStatusMessage(status: OasStatus): string | undefined {
 	const instance = status.instance.trim()
 	const version = status.version.trim()
@@ -229,6 +236,7 @@ export function statusToVariableValues(status: OasStatus): Record<string, string
 		lra: formatLoudness(status.lra),
 		instance: status.instance,
 		version: status.version,
+		fullscreen: boolToVariable(status.fullscreen),
 	}
 
 	for (const n of SLOT_NUMBERS) {

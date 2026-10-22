@@ -5,6 +5,7 @@ import {
 	air3TimeCommand,
 	air3TimeFromClock,
 	air3TohCommand,
+	fullscreenCommand,
 	airCommand,
 	airResetCommand,
 	lufsIntegratedCommand,
@@ -21,6 +22,9 @@ describe('command strings', () => {
 		assert.equal(airResetCommand(3), 'AIR3:RESET')
 		assert.equal(airResetCommand(4), 'AIR4:RESET')
 		assert.equal(air3TohCommand('TOGGLE'), 'AIR3TOH:TOGGLE')
+		assert.equal(fullscreenCommand('TOGGLE'), 'FULLSCREEN:TOGGLE')
+		assert.equal(fullscreenCommand('ON'), 'FULLSCREEN:ON')
+		assert.equal(fullscreenCommand('OFF'), 'FULLSCREEN:OFF')
 		assert.equal(lufsIntegratedCommand('START'), 'LUFSI:START')
 		assert.equal(lufsIntegratedCommand('STOP'), 'LUFSI:STOP')
 		assert.equal(lufsIntegratedCommand('TOGGLE'), 'LUFSI:TOGGLE')

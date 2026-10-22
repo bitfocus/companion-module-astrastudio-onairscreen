@@ -13,6 +13,7 @@ const WARN_BG = combineRgb(255, 165, 0)
 const SILENCE_BG = combineRgb(255, 255, 0)
 const LUFS_BG = combineRgb(156, 39, 176)
 const TEXT_BG = combineRgb(40, 40, 40)
+const FULLSCREEN_BG = combineRgb(0, 110, 140)
 
 export function UpdatePresets(self: ModuleInstance): void {
 	const structure: CompanionPresetSection[] = [
@@ -60,6 +61,19 @@ export function UpdatePresets(self: ModuleInstance): void {
 						'lufs_integrated',
 						'lufs_integrated_reset',
 					],
+				},
+			],
+		},
+		{
+			id: 'display',
+			name: 'Display',
+			definitions: [
+				{
+					id: 'display_group',
+					name: 'Display',
+					description: 'Fullscreen needs OnAirScreen 1.1.0.',
+					type: 'simple',
+					presets: ['fullscreen'],
 				},
 			],
 		},
@@ -378,6 +392,39 @@ export function UpdatePresets(self: ModuleInstance): void {
 			},
 		],
 		feedbacks: [],
+	}
+
+	presets['fullscreen'] = {
+		type: 'simple',
+		name: 'Fullscreen',
+		style: {
+			text: 'Fullscreen',
+			size: 'auto',
+			color: INACTIVE_COLOR,
+			bgcolor: INACTIVE_BG,
+			show_topbar: false,
+		},
+		steps: [
+			{
+				down: [
+					{
+						actionId: 'fullscreen',
+						options: { state: 'TOGGLE' },
+					},
+				],
+				up: [],
+			},
+		],
+		feedbacks: [
+			{
+				feedbackId: 'fullscreen',
+				options: {},
+				style: {
+					color: ACTIVE_COLOR,
+					bgcolor: FULLSCREEN_BG,
+				},
+			},
+		],
 	}
 
 	self.setPresetDefinitions(structure, presets)

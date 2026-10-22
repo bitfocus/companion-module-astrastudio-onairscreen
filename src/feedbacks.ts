@@ -2,6 +2,7 @@ import { combineRgb } from '@companion-module/base'
 import type ModuleInstance from './main.js'
 import {
 	isAir3Toth,
+	isFullscreen,
 	isAirOn,
 	isLedAutoflash,
 	isLedOn,
@@ -39,6 +40,10 @@ export type FeedbacksSchema = {
 		}
 	}
 	air3_toth: {
+		type: 'boolean'
+		options: Record<string, never>
+	}
+	fullscreen: {
 		type: 'boolean'
 		options: Record<string, never>
 	}
@@ -170,6 +175,21 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 					return false
 				}
 				return isAir3Toth(self.lastStatus)
+			},
+		},
+		fullscreen: {
+			name: 'Fullscreen is on',
+			type: 'boolean',
+			defaultStyle: {
+				bgcolor: combineRgb(0, 110, 140),
+				color: combineRgb(255, 255, 255),
+			},
+			options: [],
+			callback: () => {
+				if (!self.lastStatus) {
+					return false
+				}
+				return isFullscreen(self.lastStatus)
 			},
 		},
 		silence: {

@@ -3,6 +3,7 @@ import { sendCommand } from './api.js'
 import {
 	air3TimeFromClock,
 	air3TohCommand,
+	fullscreenCommand,
 	airCommand,
 	airResetCommand,
 	ledCommand,
@@ -36,6 +37,11 @@ export type ActionsSchema = {
 		}
 	}
 	air3_toh: {
+		options: {
+			state: ToggleState
+		}
+	}
+	fullscreen: {
 		options: {
 			state: ToggleState
 		}
@@ -214,6 +220,22 @@ export function UpdateActions(self: ModuleInstance): void {
 			],
 			callback: async (event) => {
 				await send(self, air3TohCommand(event.options.state))
+			},
+		},
+		fullscreen: {
+			name: 'Fullscreen',
+			description: 'Switch the main window to fullscreen, windowed, or toggle (OnAirScreen 1.1.0)',
+			options: [
+				{
+					id: 'state',
+					type: 'dropdown',
+					label: 'State',
+					default: 'TOGGLE',
+					choices: TOGGLE_CHOICES,
+				},
+			],
+			callback: async (event) => {
+				await send(self, fullscreenCommand(event.options.state))
 			},
 		},
 		air3_time: {
